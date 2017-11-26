@@ -1,0 +1,64 @@
+body {
+    
+	background: url(../img/okul.jpg)no-repeat center fixed;
+    background-size: cover;
+    -webkit-background-size: center;
+    -moz-background-size: center;
+    -o-background-size: center;
+    -ms-background-size: center;
+    text-align: left;
+}
+
+#menu {
+    
+        margin: 0px;
+    
+        padding: 0px;
+    
+        list-style-type: none;
+    
+    }
+    
+    #menu li {
+    
+        float: left;
+    
+        width: 150px;
+    
+        position: relative;
+    
+    }
+    
+    #menu a {
+    
+        font-family: "Times New Roman", Times, serif;
+    
+        font-size: 15px;
+    
+        color: #FFFFFF;
+    
+        text-decoration: none;
+    
+        background-color: #00CCFF;
+    
+        display: block;
+    
+        padding-top: 15px;
+    
+        padding-right: 15px;
+    
+        border: 1px solid #00CCFF;
+    
+        text-align: center;
+    
+        line-height: 10px;
+    
+        margin-right: 5px;
+    
+    }
+    
+    #menu a:hover {
+    
+        background-color: #0099FF;
+    
+    }

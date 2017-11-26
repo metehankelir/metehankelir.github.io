@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>EĞİTİM</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<link type="text/css" rel=stylesheet href="css\style.css"/>
+<body>
+  <input type="text" class="form-control" id="duyuru" value="duyurular veri tabanından çekilecek" ><br>
+  <div class="container" style="margin-top:50px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group" id="butonlar">
+          <button class="btn btn-primary">ÖĞRENCİ BİLGİLERİ</button>
+          <button class="btn btn-primary">NOTLARI</button>
+          <button id="btnIletisim" class="btn btn-primary">HOCAYA MESAJ ATIN</button>    
+          <a href="index.html" ><button class="btn btn-primary"> ÇIKIŞ</button></a>    
+        </div>
+        <div id="sayfalar" style="margin-top:20px">
+          <p class="alert alert-info" style="height:500px;">
+            <b>ÖĞRENCİ BİLGİLERİ</b><br>
+            <td>ÖĞRENCİ NUMARASI</td><input type="text" class="form-control" id="txtOgrNo" value="bilgileri veri tabanından gelecek" ><br>
+            <td>T.C NO</td><input type="text" class="form-control" id="txtTc" value="bilgileri veri tabanından gelecek">
+            <td>AD</td><input type="text" class="form-control" id="txtAd" value="bilgileri veri tabanından gelecek"><br>
+            <td>SOYAD</td><input type="text" class="form-control" id="txtSoyad" value="bilgileri veri tabanından gelecek"><br>
+            <td>BÖLÜM</td><input type="text" class="form-control" id="txtBolum" value="bilgileri veri tabanından gelecek"><br>
+            <td>SINIF</td><input type="text" class="form-control" id="txtSınıf"value="bilgileri veri tabanından gelecek" >
+               
+          </p>
+
+          <p class="alert alert-info" style="height:400px;">
+            <b>NOTLARI</b>
+            <label>Vize Notu Giriniz</label>
+        <input type="text" id="txtVize" class="form-control">
+        <label>Final Notu Giriniz</label>
+        <input type="text" id="txtFinal" class="form-control">
+        <br>
+        <button id="btnHesapla" class="btn btn-primary">Hesapla</button>
+        <hr>
+        <div id="sonuc"></div>           
+          </p>               
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="margin-top:150px;">
+  <div class="row">
+    <div class="col-md-4">
+      
+      <div id="iletiForm" class="alert alert-info">
+        <h1>İletişim Formu</h1>
+        <label>Adı Soyadı</label>
+        <input type="text" class="form-control">
+        <label>E-Posta</label>
+        <input type="text" class="form-control">
+        <label>Mesajınız</label>
+        <textarea class="form-control" rows="3"></textarea>
+        <br>
+        <button id="btnGonder" class="btn btn-success">Gönder</button>
+        <button id="btnVazgec" class="btn btn-danger">Vazgeç</button>
+        <button id="btnTemizle" class="btn btn-warning">Temizle</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <script src="js/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      $("#iletiForm").css({
+        "width": "300px",
+        "position": "fixed",
+        "top": "-500px",
+        "left": "500px"
+
+      });
+
+      $("#btnIletisim").click(function () {
+        $("#iletiForm").animate({
+          "top": "100px",
+          "left": "500px"
+
+        }, 1000);
+        return false;
+      });
+      $("#btnVazgec").click(function () {
+        $("#iletiForm").animate({
+          "top": "-500px",
+          "left": "500px"
+
+        }, 1000);
+        $("#btnTemizle").click();
+
+        return false;
+      });
+
+      $("#btnTemizle").click(function () {
+        $("input:text, textarea").val("");
+        return false;
+      });
+    });
+  </script>
+
+  <script src="js/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      $("#txtVize, #txtFinal").keypress(function (event) {
+
+        if (event.which < 48 || event.which > 57) {
+          return false;
+        }
+      });
+
+      $("#txtVize, #txtFinal").blur(function () {
+        var d = $(this).val();
+        if (d < 0 || d > 100) {
+          $(this).val(0);
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Girilen Not 0-100 Arasında Olmalıdır!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(5000);
+        }
+      });
+
+      $("#btnHesapla").click(function () {
+        var v = $("#txtVize").val();
+        var f = $("#txtFinal").val();
+
+        if (v == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Vize Notu Giriniz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+        if (f == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Final Notu Giriniz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+
+        var ort = (v * 0.4) + (f * 0.6);
+        if (ort < 60) {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Ortalamanız: " + ort + " Sonuç : Kaldınız");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+
+        }
+        else {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Ortalamanız: " + ort + " Sonuç : Geçtiniz");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-success");
+        }
+      });
+
+      $("#butonlar button:first").removeClass();
+      $("#butonlar button:first").addClass("btn btn-danger");
+
+      $("#sayfalar p").hide();
+      $("#sayfalar p:first").show();
+
+
+      $("#butonlar button").click(function () {
+
+        var index = $(this).index();
+        $("#butonlar button").removeClass();
+        $("#butonlar button").addClass("btn btn-primary");
+        $("#butonlar button:eq(" + index + ")").addClass("btn btn-danger");
+
+        $("#sayfalar p").slideUp();
+        $("#sayfalar p:eq(" + index + ")").slideDown();
+      });
+    });
+  </script>
+</body>
+
+</html>

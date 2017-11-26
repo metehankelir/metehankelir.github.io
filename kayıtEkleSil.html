@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>KAYIT EKLE</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<link type="text/css" rel=stylesheet href="css\menu.css" />
+
+<body>
+
+  <div class="col-md-2"></div>
+  <div class="btn-group" id="butonlar">
+    <a href="anasayfa.html">
+      <button class="btn btn-primary"> ANASAYFA</button>
+    </a>
+    <a href="kayıtEkleSil.html">
+      <button class="btn btn-primary">KAYIT EKLE</button>
+    </a>
+    <a href="not.html">
+      <button class="btn btn-primary"> NOT EKLE</button>
+    </a>
+    <a href="duyurular.html">
+      <button class="btn btn-primary"> DUYURU EKLE</button>
+    </a>
+    <a href="dersler.html">
+      <button class="btn btn-primary"> DERS EKLE</button>
+    </a>
+
+  </div>
+  </div>
+  <div class="container" style="margin-top:150px;">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="alert alert-info">
+          <h1>Kayıt Ekle</h1>
+          <label>ÖĞRENCİ NUMARASI</label>
+          <input type="text" id="txtogrNO" class="form-control">
+          <label>T.C NO</label>
+          <input type="text" id="txttcNo" class="form-control">
+          <label>ADI</label>
+          <input type="text" id="txtAdı" class="form-control">
+          <label>SOYADI</label>
+          <input type="text" id="txtSoyadı" class="form-control">
+          <label>BÖLÜMÜ</label>
+          <input type="text" id="txtBolum" class="form-control">
+          <label>SINIFI</label>
+          <input type="text" id="txtSınıf" class="form-control">
+          <br>
+          <button id="btnKaydet" class="btn btn-primary">Kaydet</button>
+          <hr>
+          <div id="sonuc"></div>
+        </div>
+
+      </div>
+      
+      <div class="col-md-8 " >
+        <h1>Kayıtlar</h1>
+        <table class="table table-hover" id="tbKayitlar">
+
+          <tr class="bg-info">
+
+
+            <td>ÖĞRENCİ NUMARASI</td>
+            <td>T.C NO</td>
+            <td>AD</td>
+            <td>SOYAD</td>
+            <td>BÖLÜM</td>
+            <td>SINIF</td>
+
+          </tr>
+      </div>
+      </table>
+    </div>
+  </div>
+  </div>
+  <script src="js/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      $("#btnKaydet").click(function () {
+
+        var ogrNo = $("#txtogrNO").val();
+        var tcNo = $("#txttcNo").val();
+        var ad = $("#txtAdı").val();
+        var soyad = $("#txtSoyadı").val();
+        var bolum = $("#txtBolum").val();
+        var sınıf = $("#txtSınıf").val();
+
+        if (ogrNo == "" || tcNo == "" || ad == "" || soyad == "" || bolum == "" || sınıf == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Lütfen Tüm Alanları Doldurunuz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+
+        $("#tbKayitlar").append("<tr><td>" + ogrNo + "</td><td>" + tcNo + "</td><td>" + ad + "</td><td>" + soyad + "</td><td>" + bolum + "</td><td>" + sınıf + "</td><td><button class='btn btn-danger sil'>Sil</button></td></tr>");
+      });
+
+      $(document).on("click", ".sil", function () {
+        var satir = $(this).closest("tr");
+        satir.remove();
+
+      });
+    });
+  </script>
+</body>
+
+</html>

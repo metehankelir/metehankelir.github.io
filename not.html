@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<link type="text/css" rel=stylesheet href="css\menu.css"/>
+<body>
+    <div class="col-md-2"></div>
+
+        <div class="btn-group" id="butonlar">
+            <a href="anasayfa.html" ><button class="btn btn-primary"> ANASAYFA</button></a>
+          <a href="kayıtEkleSil.html"><button class="btn btn-primary">KAYIT EKLE</button></a>
+         <a href="not.html"> <button class="btn btn-primary">NOT EKLE</button></a>
+          <a href="duyurular.html"><button class="btn btn-primary"> DUYURU EKLE</button></a>
+          <a href="dersler.html"><button class="btn btn-primary"> DERS EKLE</button></a>
+        </div>
+    </div>   
+    
+  <div class="container" style="margin-top:150px;">
+    <div class="row">
+      <div class="col-md-4">
+          <div class="alert alert-info">
+        <h1>BİLGİLER</h1>
+        <label>ÖĞRENCİ NUMARASI</label>
+        <input type="text" id="txtAdsoyad" class="form-control">
+        <label>VİZE</label>
+        <input type="text" id="txtMail" class="form-control">
+        <label>FİNAL</label>
+        <input type="text" id="txtYas" class="form-control">
+       
+        <br>
+        <button id="btnKaydet" class="btn btn-primary">Kaydet</button>
+        <hr>
+        </div>
+        <div id="sonuc"></div>
+
+      </div>
+      <div class="col-md-8">
+          <div class="alert alert-info">
+        <h1>NOT</h1>
+        <table class="table table-hover" id="tbKayitlar">
+         
+          <tr class="bg-info">
+
+            <td>ÖĞRENCİ NUMARASI</td>
+            <td>VİZE</td>
+            <td>FİNAL</td>
+            <td>Sil</td>
+          </tr>
+         
+        </table>
+        
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      $("#btnKaydet").click(function () {
+
+        var adsoyad = $("#txtAdsoyad").val();
+        var mail = $("#txtMail").val();
+        var yas = $("#txtYas").val();
+
+        if (adsoyad == "" || mail == "" || yas == "") {
+          $("#sonuc").fadeIn(1000);
+          $("#sonuc").html("Lütfen Tüm Alanları Doldurunuz!");
+          $("#sonuc").removeClass();
+          $("#sonuc").addClass("alert alert-danger");
+          $("#sonuc").fadeOut(3000);
+          return false;
+        }
+
+        $("#tbKayitlar").append("<tr><td>" + adsoyad + "</td><td>" + mail + "</td><td>" + yas + "</td><td><button class='btn btn-danger sil'>Sil</button></td></tr>");
+      });
+
+      $(document).on("click", ".sil", function () {
+        var satir = $(this).closest("tr");
+        satir.remove();
+
+      });
+    });
+  </script>
+</body>
+
+</html>

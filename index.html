@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GİRİŞ</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<link type="text/css" rel=stylesheet href="css\style.css" />
+
+<body>
+    <div class="container" style="left:150px;">
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4">
+                <div class="alert alert-info">
+                    <h1>YETKİLİ</h1>
+                    <div class="form-group">
+                        <label>YETKİLİ ADI</label>
+                        <input id="kullanici" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Parola</label>
+                        <input id="parola" type="password" class="form-control">
+                    </div>
+                    <button id="btnGiris" type="button" class="btn btn-success">GİRİŞ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <div class="container" style="right:150px;">
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4">
+                <div class="alert alert-info">
+                    <h1>ÖĞRENCİ GİRİŞİ</h1>
+                    <div class="form-group">
+                        <label>ÖĞRENCİ NUMARASI</label>
+                        <input id="Okullanici" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Parola</label>
+                        <input id="Oparola" type="password" class="form-control">
+                    </div>
+                    <button id="btnOgrGiris" type="button" class="btn btn-success">GİRİŞ</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnGiris").click(function () {
+                var kullanici = $("#kullanici").val();
+                var parola = $("#parola").val();
+                if (kullanici == "admin" && parola == "admin") {
+                    window.location = "anasayfa.html"
+                } else {
+                    alert(" Kullanıcı adı: admin, Parola: admin");
+                }
+            })
+        })
+
+        $(document).ready(function () {
+
+            $("#btnOgrGiris").click(function () {
+                var Okullanici = $("#Okullanici").val();
+                var Oparola = $("#Oparola").val();
+                if (Okullanici == 'ogr' && Oparola == 'ogr') {
+                    window.location = "ogrenci.html"
+                }else{
+                    alert("kullanıcı adı: ogr, Parola: ogr")
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
